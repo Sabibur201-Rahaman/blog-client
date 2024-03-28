@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { Form, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import{Box,Typography,TextField,Button}from '@mui/material'
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+
+
 const Register = () => {
   const navigate=useNavigate()
   const[inputs,setInputs]=useState({
@@ -24,7 +28,7 @@ const {data}=await axios.post ('http://localhost:8080/api/v1/user/register',{
   password:inputs.password
 })
 if(data.success){
-  alert('user Successfully registered')
+  toast.success('user Successfully registered')
   navigate('/login')
 }
     }catch(error){
@@ -83,6 +87,8 @@ console.log(error)
     color='primary' onClick={()=>navigate('/login')}>Already Registered?please Login</Button>
     </Box>
     </form>
+    <Toaster position="Bottom-center"/>
+
     </>
   )
 }
