@@ -30,6 +30,8 @@ const {data}=await axios.post ('http://localhost:8080/api/v1/user/register',{
 if(data.success){
   toast.success('user Successfully registered')
   navigate('/login')
+}else{
+  toast.error('Already Registered?please Login')
 }
     }catch(error){
 console.log(error)
