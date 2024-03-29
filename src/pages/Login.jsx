@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 const Login = () => {
   const navigate=useNavigate()
   const[inputs,setInputs]=useState({
-    name:'',
     email:'',
     password:''
   })
@@ -20,14 +19,13 @@ setInputs((prevState)=>({
   const handleSubmit=async(e)=>{
     e.preventDefault()
     try{
-const {data}=await axios.post ('http://localhost:8080/api/v1/user/register',{
-  userName:inputs.name,
+const {data}=await axios.post ('http://localhost:8080/api/v1/user/login',{
   email:inputs.email,
   password:inputs.password
 })
 if(data.success){
   toast.success('user Successfully registered')
-  navigate('/login')
+  navigate('/')
 }else{
   toast.error('Already Registered?please Login')
 }
@@ -51,15 +49,9 @@ console.log(error)
       borderRadius={5}
     >
     <Typography variant='h4'>
-    Register
+    Login
     </Typography>
-    <TextField placeholder='name'
-    name='name'
-    type={'text'}
-    margin='normal'
-    required
-    onChange={handleChange}
-    />
+    
     <TextField placeholder='email'
     name='email'
     type={'email'}
@@ -84,7 +76,7 @@ console.log(error)
 
     <Button type="submit"
     sx={{borderRadius:3,marginTop:3}}
-    color='primary' onClick={()=>navigate('/login')}>Already Registered?please Login</Button>
+    color='primary' onClick={()=>navigate('/')}>Already Registered?please Login</Button>
     </Box>
     </form>
     <Toaster position="Bottom-center"/>
