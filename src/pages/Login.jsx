@@ -4,8 +4,11 @@ import axios from 'axios'
 import{Box,Typography,TextField,Button}from '@mui/material'
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
+import {useDispatch } from 'react-redux';
+import { authActions } from '../../redux/store';
 const Login = () => {
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const[inputs,setInputs]=useState({
     email:'',
     password:''
@@ -24,7 +27,8 @@ const {data}=await axios.post ('http://localhost:8080/api/v1/user/login',{
   password:inputs.password
 })
 if(data.success){
-  toast.success('user Successfully registered')
+  dispatch(authActions.Login())
+  toast.success('user Successfully logedIn')
   navigate('/')
 }else{
   toast.error('Already Registered?please Login')
