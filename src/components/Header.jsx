@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import {useSelector}from 'react-redux'
+import {useDispatch, useSelector}from 'react-redux'
 import { Box, AppBar, Toolbar, Button, Typography,Tabs,Tab} from "@mui/material";
 import { Link } from "react-router-dom";
-import Blog from './../pages/Blog';
+import { useNavigate } from "react-router-dom";
+import { authActions } from "../../redux/store";
 const Header = () => {
   const[ value,setvalue]=useState()
   const isLogin=useSelector(state=>state.isLogin)
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const handleLogout=()=>{
+    dispatch(authActions.Logout())
+    navigate('/login')
+  }
   return (
     <>
       <AppBar position="sticky">
@@ -25,7 +32,7 @@ const Header = () => {
             <Button sx={{margin:1,color:"white"}} LinkComponent={Link} to='/login'>Login</Button>
             </>}
             {isLogin &&(<>
-              <Button sx={{margin:1,color:"white"}}>Logout</Button>
+              <Button sx={{margin:1,color:"white"}} onClick={handleLogout}>Logout</Button>
 
             </>)}
             </Box>
