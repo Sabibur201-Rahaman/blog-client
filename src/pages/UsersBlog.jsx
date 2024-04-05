@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import BlogCard from "../components/BlogCard";
 
 const UsersBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -21,9 +22,6 @@ const UsersBlog = () => {
 
     getUserBlogs();
   }, []); // Empty dependency array means this effect will only run once after initial render
-
-  console.log(blogs);
-
   return (
     <div>
       {blogs && blogs.length > 0 ? (

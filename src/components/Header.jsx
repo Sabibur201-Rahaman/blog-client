@@ -36,6 +36,7 @@ const Header = () => {
                 >
                   <Tab label="Blogs" LinkComponent={Link} to="/" />
                   <Tab label="My-Blogs" LinkComponent={Link} to="/my-blogs" />
+                  <Tab label="Create-Blogs" LinkComponent={Link} to="/create-blogs" />
                 </Tabs>
               </Box>
             </>

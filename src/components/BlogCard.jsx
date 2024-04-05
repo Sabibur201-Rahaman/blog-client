@@ -52,8 +52,11 @@ export default function BlogCard({title,description,image,userName,time}) {
         alt="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {description}
+      <Typography variant='h6' color='violet'>
+          Title:{title}
+        </Typography>
+        <Typography variant="body2" color="secondary">
+         Description: {description}
         </Typography>
       </CardContent>
     </Card>
