@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 const CreateBlog = () => {
   const id = localStorage.getItem("userId");
+  const token= localStorage.getItem("token");
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     title: "",
@@ -32,7 +33,13 @@ const CreateBlog = () => {
           title: inputs.title,
           description: inputs.description,
           image: inputs.image,
-          user: id, // Including the user ID in the data sent to the server
+          user:id
+          // user: id, // Including the user ID in the data sent to the server
+        },
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
         }
       );
       if (data?.success) {

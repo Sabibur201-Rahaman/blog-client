@@ -14,7 +14,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Box } from '@mui/material';
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -26,7 +29,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function BlogCard({title,description,image,userName,time}) {
+export default function BlogCard({title,description,image,userName,time,id,isUser}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -35,6 +38,16 @@ export default function BlogCard({title,description,image,userName,time}) {
 
   return (
     <Card sx={{ width:"40%",margin:"auto",mt:2,padding:2,boxShadow:"5px,5px,10px #ccc"}}>
+      {isUser&&(
+<Box display={'flex'}>
+<IconButton sx={{marginLeft:'auto'}}>
+<ModeEditIcon/>
+</IconButton>
+<IconButton>
+  <DeleteIcon/>
+</IconButton>
+</Box>
+      )}
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[1000] }} aria-label="recipe">

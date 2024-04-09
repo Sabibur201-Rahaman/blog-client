@@ -28,6 +28,7 @@ const {data}=await axios.post ('http://localhost:8080/api/v1/user/login',{
 })
 if(data.success){
   localStorage.setItem('userId',data?.user._id)
+  localStorage.setItem('token',data?.token)
   dispatch(authActions.Login())
   toast.success('user Successfully logedIn')
   navigate('/')

@@ -5,7 +5,7 @@ import BlogCard from "../components/BlogCard";
 const UsersBlog = () => {
   const [blogs, setBlogs] = useState([]);
 
-  useEffect(() => {
+  
     const getUserBlogs = async () => {
       try {
         const id = localStorage.getItem("userId");
@@ -13,15 +13,19 @@ const UsersBlog = () => {
           `http://localhost:8080/api/v1/blog/userBlog/${id}`
         );
         if (data?.success) {
-          setBlogs(data?.blogs);
+          setBlogs(data?.userBlog.blogs);
         }
       } catch (err) {
         console.log(err);
       }
     };
 
-    getUserBlogs();
+    useEffect(() => {
+      getUserBlogs();
+
   }, []); // Empty dependency array means this effect will only run once after initial render
+  console.log(blogs);
+
   return (
     <div>
       {blogs && blogs.length > 0 ? (
@@ -32,10 +36,12 @@ const UsersBlog = () => {
             title={blog.title}
             description={blog.description}
             image={blog.image}
-            username={blog.user.username}
+            userName={blog.user.userName}
             time={blog.createdAt}
           />
+          
         ))
+        
       ) : (
         <h1>You Havent Created a blog</h1>
       )}{" "}
