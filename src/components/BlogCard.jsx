@@ -18,6 +18,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from '@mui/material';
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { useNavigate } from 'react-router-dom';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -31,16 +32,18 @@ const ExpandMore = styled((props) => {
 
 export default function BlogCard({title,description,image,userName,time,id,isUser}) {
   const [expanded, setExpanded] = React.useState(false);
-
+const navigate=useNavigate()
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+const handleEdit=()=>{
+navigate(`/blog-details/${id}`)
+}
   return (
     <Card sx={{ width:"40%",margin:"auto",mt:2,padding:2,boxShadow:"5px,5px,10px #ccc"}}>
       {isUser&&(
 <Box display={'flex'}>
-<IconButton sx={{marginLeft:'auto'}}>
+<IconButton onClick={handleEdit}sx={{marginLeft:'auto'}}>
 <ModeEditIcon/>
 </IconButton>
 <IconButton>
