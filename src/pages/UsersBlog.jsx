@@ -24,7 +24,6 @@ const UsersBlog = () => {
       getUserBlogs();
 
   }, []); // Empty dependency array means this effect will only run once after initial render
-  console.log(blogs);
 
   return (
     <div>

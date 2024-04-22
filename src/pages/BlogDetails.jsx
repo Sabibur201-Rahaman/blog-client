@@ -2,9 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import toast from "react-hot-toast";
 const BlogDetails = () => {
+    const navigate=useNavigate()
   const [blog, setBlog] = useState({});
   const [inputs, setInputs] = useState({});
   const id = useParams().id;

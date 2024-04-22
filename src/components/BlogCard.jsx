@@ -19,6 +19,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from '@mui/material';
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -39,6 +41,17 @@ const navigate=useNavigate()
 const handleEdit=()=>{
 navigate(`/blog-details/${id}`)
 }
+const handleDelete=async()=>{
+  try{
+const {data}=await axios.delete(`http://localhost:8080/api/v1/blog/deleteBlog/${id}`)
+if(data?.success){
+toast('blog deleted successfully')
+  window.location.reload()
+}
+  }catch(err){
+console.log(err)
+  }
+}
   return (
     <Card sx={{ width:"40%",margin:"auto",mt:2,padding:2,boxShadow:"5px,5px,10px #ccc"}}>
       {isUser&&(
@@ -46,7 +59,7 @@ navigate(`/blog-details/${id}`)
 <IconButton onClick={handleEdit}sx={{marginLeft:'auto'}}>
 <ModeEditIcon/>
 </IconButton>
-<IconButton>
+<IconButton onClick={handleDelete}>
   <DeleteIcon/>
 </IconButton>
 </Box>
@@ -75,6 +88,8 @@ navigate(`/blog-details/${id}`)
          Description: {description}
         </Typography>
       </CardContent>
+      <Toaster position="Bottom-center"/>
+
     </Card>
   );
 }
